@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: cd dir
-      - run: cd src
+        run: cd src
       - name: Build
         run: dotnet build --configuration Release /p:Version=1.0.${{ github.run_number }}
       - name: Test
