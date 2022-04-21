@@ -1,2 +1,2 @@
 # Shared Libraries
-Shared Libraries for the learning system
+Shared Libraries for the learning system.
