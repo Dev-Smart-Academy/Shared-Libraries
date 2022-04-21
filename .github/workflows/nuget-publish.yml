@@ -31,6 +31,6 @@ jobs:
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=1.0.${{ github.run_number }} --no-build --output .
       - name: Push
-        run: dotnet nuget push CalculatorIliya.*.*.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGGET_TOKEN}
+        run: dotnet nuget push CalculatorIliya.*.*.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
         env:
-          NUGGET_TOKEN: ${{ secrets.NUGGET_TOKEN }}
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
