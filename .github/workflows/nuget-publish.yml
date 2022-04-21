@@ -25,11 +25,11 @@ jobs:
       - name: cd dir
         run: cd src
       - name: Build
-        run: dotnet build --configuration Release /p:Version=1.0.${{ github.run_number }}
+        run: dotnet build src --configuration Release /p:Version=1.0.${{ github.run_number }}
       - name: Test
-        run: dotnet test --configuration Release /p:Version=1.0.${{ github.run_number }} --no-build
+        run: dotnet test src --configuration Release /p:Version=1.0.${{ github.run_number }} --no-build
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=1.0.${{ github.run_number }} --no-build --output .
+        run: dotnet pack src --configuration Release /p:Version=1.0.${{ github.run_number }} --no-build --output .
       - name: Push
         run: dotnet nuget push *.*.*.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
         env:
