@@ -20,7 +20,8 @@ public static class InfrastructureConfiguration
         Assembly assembly)
         => services
             .AddTokenAuthentication(configuration)
-            .AddRepositories(assembly);
+            .AddRepositories(assembly)
+            .Configure<ApplicationSettings>(configuration.GetSection(nameof(ApplicationSettings)));
 
     private static IServiceCollection AddRepositories(
         this IServiceCollection services,
