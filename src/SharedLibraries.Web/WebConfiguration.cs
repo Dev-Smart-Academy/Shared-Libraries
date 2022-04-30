@@ -4,8 +4,11 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 using FluentValidation.AspNetCore;
+
+using SharedLibraries.Web.ParameterTransformers;
 
 using Application.Contracts;
 using Services;
@@ -32,7 +35,10 @@ public static class WebConfiguration
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement { { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } }, new string[] { } } });
             })
-            .AddControllers()
+            .AddControllers(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            })
             .AddFluentValidation(validation => validation
                 .RegisterValidatorsFromAssemblyContaining(applicationConfigurationType))
             .AddNewtonsoftJson();
